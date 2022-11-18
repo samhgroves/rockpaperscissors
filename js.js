@@ -13,34 +13,51 @@ function getComputerChoice() {
     }
 }
 
-function playRound(computer) {
-    
-    let userChoice = prompt("rock, paper, or scissors?","");
+function playRound(computer, user) {
 
-    if (computer == userChoice) {
+    if (computer == user) {
         return("it's a tie")
-    } else if (computer == "rock" && userChoice == "paper"){
+    } else if (computer == "rock" && user == "paper"){
         userScore +=1;
         return("Paper beats rock. you win")
-    } else if (computer == "rock" && userChoice == "scissors"){
+    } else if (computer == "rock" && user == "scissors"){
         computerScore +=1;
         return("rock beats scissors. you lose")
-    } else if (computer == "paper" && userChoice == "rock"){
+    } else if (computer == "paper" && user == "rock"){
         computerScore +=1;
         return("paper beats rock. you lose")
-    } else if (computer == "paper" && userChoice == "scissors"){
+    } else if (computer == "paper" && user == "scissors"){
         userScore +=1;
         return("scissors beats paper. you win")
-    } else if (computer == "scissors" && userChoice == "rock"){
+    } else if (computer == "scissors" && user == "rock"){
         userScore +=1;
         return("rock beats scissors. you win")
-    } else if (computer == "scissors" && userChoice == "paper"){
+    } else if (computer == "scissors" && user == "paper"){
         computerScore +=1;
         return("scissors beats paper. you lose")
-    } else {return("why did you say " + userChoice + "? are you a stupid baby?")}
+    } else {return("why did you say " + user + "? are you a stupid baby?")}
 
     }
 
+const playRock = document.querySelector('.rock');
+
+playRock.addEventListener('click', () => {
+    console.log(playRound(getComputerChoice(), 'rock'))
+});
+
+const playScissors = document.querySelector('.scissors');
+
+playScissors.addEventListener('click', () => {
+    console.log(playRound(getComputerChoice(), 'scissors'))
+});
+
+const playPaper = document.querySelector('.paper');
+
+playPaper.addEventListener('click', () => {
+    console.log(playRound(getComputerChoice(), 'paper'))
+});
+
+/*
 function game() {
     for (let i = 0; i < 5; i++) {
         console.log(playRound(getComputerChoice()));
@@ -55,3 +72,4 @@ function game() {
 }
 
 game();
+*/
