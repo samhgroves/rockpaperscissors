@@ -5,10 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors</title>
     <script src="js.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/28f244bc2a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <button class="rock">Rock</button>
-    <button class="paper">Paper</button>
-    <button class="scissors">Scissors</button>
+
+    <div class="score">
+        <div class="myscore">
+            <h1>You</h1>
+            <h1 class="playerScore"></h1>
+        </div>
+        <div class="pcscore">
+            <h1>Computer</h1>
+            <h1 class="computerScore"></h1>
+        </div>
+    </div>
+
+    <div class="choices">
+        <button id='button' class="rock">Rock</button>
+        <button id='button' class="paper">Paper</button>
+        <button id='button' class="scissors">Scissors</button>
+    </div>
+
+    <div class="round">
+    <div class="choice1">
+        <h2>You</h2>
+        <div id="myChoice"></div>
+    </div>
+
+    <div class="choice2">
+        <h2>Computer</h2>
+        <div id='pcChoice'></div>
+    </div>
+    </div>  
+
+    <div class="playagain">
+        <h1 id='gameover' class="hidden"></h1>
+        <button class = "hidden" id="playagain">Play Again?</button>
+    </div>
+
 </body>
 </html>

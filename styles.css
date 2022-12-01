@@ -1,0 +1,59 @@
+
+.score {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    border-color: black;
+    margin-left: 500px;
+    margin-right: 500px;
+}
+
+.myscore {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    align-self: center;
+}
+
+.pcscore {
+    display: flex;
+    flex-direction: column;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+button {
+    width: 100px;
+}
+
+.hidden {
+    display: none;
+}
+
+.round {
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.playagain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#playagain {
+    align-self: center;
+}
+
+#myChoice, #pcChoice {
+    display: flex;
+    justify-content: center;
+    size: 150%;
+}

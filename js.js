@@ -1,6 +1,15 @@
-let userScore = 0;
-let computerScore = 0;
-let score = (" You: " + userScore + " Computer: " + computerScore);
+const myScore = document.querySelector('.playerScore');
+myScore.textContent = 0;
+const oppScore = document.querySelector('.computerScore');
+oppScore.textContent = 0;
+
+const myChoice = document.querySelector('#myChoice');
+const pcChoice = document.querySelector('#pcChoice');
+const gameOver = document.querySelector('#gameover');
+const playAgain = document.querySelector('#playagain');
+playAgain.disabled = true;
+myChoice.className = 'fa-solid fa-question fa-5x';
+pcChoice.className = 'fa-solid fa-question fa-5x';
 
 function getComputerChoice() {
     let randomInt = Math.floor(Math.random() * 3);
@@ -15,61 +24,88 @@ function getComputerChoice() {
 
 function playRound(computer, user) {
 
-    if (computer == user) {
-        return("it's a tie")
+    if (computer == "rock" && user == "rock") {
+        pcChoice.className = 'fa-regular fa-hand-back-fist fa-5x';
+    } else if (computer == "paper" && user == "paper"){
+        pcChoice.className = 'fa-solid fa-newspaper fa-5x';
+    } else if (computer == "scissors" && user == "scissors"){
+        pcChoice.className = 'fa-solid fa-scissors fa-5x';
     } else if (computer == "rock" && user == "paper"){
-        userScore +=1;
-        return("Paper beats rock. you win")
+        pcChoice.className = 'fa-regular fa-hand-back-fist fa-5x';
+        myScore.textContent ++
+        checkScore();
     } else if (computer == "rock" && user == "scissors"){
-        computerScore +=1;
-        return("rock beats scissors. you lose")
+        pcChoice.className = 'fa-regular fa-hand-back-fist fa-5x';
+        oppScore.textContent ++;
+        checkScore();
     } else if (computer == "paper" && user == "rock"){
-        computerScore +=1;
-        return("paper beats rock. you lose")
+        pcChoice.className = 'fa-solid fa-newspaper fa-5x';
+        oppScore.textContent ++;
+        checkScore();
     } else if (computer == "paper" && user == "scissors"){
-        userScore +=1;
-        return("scissors beats paper. you win")
+        pcChoice.className = 'fa-solid fa-newspaper fa-5x';
+        myScore.textContent ++;
+        checkScore();
     } else if (computer == "scissors" && user == "rock"){
-        userScore +=1;
-        return("rock beats scissors. you win")
+        pcChoice.className = 'fa-solid fa-scissors fa-5x';
+        myScore.textContent ++;
+        checkScore();
     } else if (computer == "scissors" && user == "paper"){
-        computerScore +=1;
-        return("scissors beats paper. you lose")
-    } else {return("why did you say " + user + "? are you a stupid baby?")}
-
+        pcChoice.className = 'fa-solid fa-scissors fa-5x';
+        oppScore.textContent ++;
+        checkScore();
+    } else {console.log("Something went wrong...")}
     }
+
+function checkScore() {
+ if (myScore.textContent == 5) {
+    playAgain.disabled = false;
+    playRock.disabled = true;
+    playPaper.disabled = true;
+    playScissors.disabled = true;
+    gameOver.textContent = 'You Win!'
+    gameOver.classList.remove('hidden');
+    playAgain.classList.remove('hidden');
+ } else if (oppScore.textContent == 5){
+    playAgain.disabled = false;
+    playRock.disabled = true;
+    playPaper.disabled = true;
+    playScissors.disabled = true;
+    gameOver.textContent = 'You lose!'
+    gameOver.classList.remove('hidden');
+    playAgain.classList.remove('hidden');
+ }
+}
+
+playAgain.addEventListener('click', () => {
+    gameOver.classList.add('hidden');
+    playAgain.classList.add('hidden');
+    myChoice.className = 'fa-solid fa-question fa-5x';
+    pcChoice.className = 'fa-solid fa-question fa-5x';
+    myScore.textContent = 0;
+    oppScore.textContent = 0;
+    playRock.disabled = false;
+    playPaper.disabled = false;
+    playScissors.disabled = false;
+});
 
 const playRock = document.querySelector('.rock');
 
 playRock.addEventListener('click', () => {
-    console.log(playRound(getComputerChoice(), 'rock'))
+    myChoice.className = 'fa-regular fa-hand-back-fist fa-5x';
+    playRound(getComputerChoice(), 'rock');
 });
 
 const playScissors = document.querySelector('.scissors');
 
 playScissors.addEventListener('click', () => {
-    console.log(playRound(getComputerChoice(), 'scissors'))
+    myChoice.className = 'fa-solid fa-scissors fa-5x'
+   playRound(getComputerChoice(), 'scissors');
 });
 
 const playPaper = document.querySelector('.paper');
 
 playPaper.addEventListener('click', () => {
-    console.log(playRound(getComputerChoice(), 'paper'))
+    myChoice.className = 'fa-solid fa-newspaper fa-5x';
+    playRound(getComputerChoice(), 'paper');
 });
-
-/*
-function game() {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound(getComputerChoice()));
-    }
-    if (userScore > computerScore) {
-        console.log("You Win! You: " + userScore + " Computer: " + computerScore)
-    } else if (userScore < computerScore) {
-        console.log("You Lose! You: " + userScore + " Computer: " + computerScore)
-    } else if (userScore = computerScore) {
-        console.log("It's a tie! You: " + userScore + " Computer: " + computerScore)
-    } else {console.log("Something went horribly wrong")}
-}
-
-game();
-*/
